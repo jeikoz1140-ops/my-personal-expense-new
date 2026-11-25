@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f3f4f6">
+  <title>My Personal Expense</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- HALAMAN LOGIN -->
+  <main id="authContainer" class="auth-container">
+    <section class="auth-card">
+
+      <div class="brand">
+        <div class="brand-icon">M</div>
+        <h1>My Personal Expense</h1>
+        <p>Kelola keuanganmu dengan lebih mudah.</p>
+      </div>
+
+      <form id="loginForm" class="auth-form">
+        <h2>Selamat Datang</h2>
+        <p class="form-description">Masuk untuk melanjutkan ke akunmu.</p>
+
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" placeholder="Masukkan email" autocomplete="email" required>
+
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="Masukkan password" autocomplete="current-password" required>
+
+        <div class="forgot-row">
+          <button type="button" id="forgotBtn" class="text-button">Lupa Password?</button>
+        </div>
+
+        <button type="submit" class="primary-button">Masuk</button>
+
+        <p class="switch-text">
+          Belum punya akun?
+          <button type="button" id="showRegister" class="text-button">Daftar Sekarang</button>
+        </p>
+      </form>
+
+      <form id="registerForm" class="auth-form hidden">
+        <h2>Buat Akun Baru</h2>
+        <p class="form-description">Daftarkan akun untuk mulai mengelola keuanganmu.</p>
+
+        <label for="registerEmail">Email</label>
+        <input type="email" id="registerEmail" placeholder="Masukkan email" autocomplete="email" required>
+
+        <label for="registerPassword">Password</label>
+        <input type="password" id="registerPassword" placeholder="Minimal 6 karakter" autocomplete="new-password" minlength="6" required>
+
+        <label for="confirmPassword">Konfirmasi Password</label>
+        <input type="password" id="confirmPassword" placeholder="Ulangi password" autocomplete="new-password" minlength="6" required>
+
+        <button type="submit" class="primary-button">Daftar Akun</button>
+
+        <p class="switch-text">
+          Sudah punya akun?
+          <button type="button" id="showLogin" class="text-button">Login</button>
+        </p>
+      </form>
+
+      <form id="forgotForm" class="auth-form hidden">
+        <h2>Lupa Password?</h2>
+        <p class="form-description">Masukkan email akunmu untuk menerima tautan pemulihan password.</p>
+
+        <label for="forgotEmail">Email</label>
+        <input type="email" id="forgotEmail" placeholder="Masukkan email akun" autocomplete="email" required>
+
+        <button type="submit" class="primary-button">Kirim Link Pemulihan</button>
+
+        <p class="switch-text">
+          <button type="button" id="backToLogin" class="text-button">Kembali ke Login</button>
+        </p>
+      </form>
+
+      <div id="message" class="message hidden"></div>
+    </section>
+  </main>
+
+  <!-- DASHBOARD -->
+  <main id="dashboard" class="dashboard hidden">
+
+    <header class="topbar">
+      <div>
+        <div class="dashboard-brand">My Personal Expense</div>
+        <p id="userEmail" class="user-email">Pengguna</p>
+      </div>
+      <button id="logoutBtn" class="logout-button">Keluar</button>
+    </header>
+
+    <section class="welcome-section">
+      <h2>Dashboard</h2>
+      <p>Ringkasan keuangan pribadi kamu.</p>
+    </section>
+
+    <!-- RINGKASAN KEUANGAN -->
+    <section class="summary-grid">
+
+      <article class="summary-card balance-card">
+        <p>Total Saldo</p>
+        <h2 id="totalBalance">Rp0</h2>
+        <span>Saldo keseluruhan</span>
+      </article>
+
+      <article class="summary-card">
+        <p>Total Pemasukan</p>
+        <h2 id="totalIncome">Rp0</h2>
+        <span>Akumulasi pemasukan</span>
+      </article>
+
+      <article class="summary-card">
+        <p>Total Pengeluaran</p>
+        <h2 id="totalExpense">Rp0</h2>
+        <span>Akumulasi pengeluaran</span>
+      </article>
+
+    </section>
+
+    <!-- TAMBAH TRANSAKSI -->
+    <section class="dashboard-card">
+      <div class="section-heading">
+        <div>
+          <h3>Tambah Transaksi</h3>
+          <p>Catat pemasukan atau pengeluaran baru.</p>
+        </div>
+      </div>
+
+      <form id="transactionForm">
+
+        <label for="transactionType">Jenis Transaksi</label>
+        <select id="transactionType" required>
+          <option value="expense">Pengeluaran</option>
+          <option value="income">Pemasukan</option>
+        </select>
+
+        <label for="transactionAmount">Jumlah (Rp)</label>
+        <input type="number" id="transactionAmount" placeholder="Contoh: 50000" min="1" step="1" required>
+
+        <label for="transactionCategory">Kategori</label>
+        <select id="transactionCategory" required>
+          <option value="Makanan">Makanan</option>
+          <option value="Transportasi">Transportasi</option>
+          <option value="Belanja">Belanja</option>
+          <option value="Tagihan">Tagihan</option>
+          <option value="Hiburan">Hiburan</option>
+          <option value="Gaji">Gaji</option>
+          <option value="Bonus">Bonus</option>
+          <option value="Investasi">Investasi</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+
+        <label for="transactionDescription">Keterangan</label>
+        <input type="text" id="transactionDescription" placeholder="Contoh: Makan siang">
+
+        <label for="transactionDate">Tanggal</label>
+        <input type="date" id="transactionDate" required>
+
+        <button type="submit" id="saveTransactionBtn" class="primary-button">
+          Simpan Transaksi
+        </button>
+
+      </form>
+    </section>
+
+    <!-- RIWAYAT TRANSAKSI -->
+    <section class="dashboard-card">
+      <div class="section-heading">
+        <div>
+          <h3>Riwayat Transaksi</h3>
+          <p>Daftar pemasukan dan pengeluaran kamu.</p>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <input type="month" id="monthFilter">
+        <button type="button" id="resetFilterBtn" class="secondary-button">Semua</button>
+      </div>
+
+      <div id="transactionList" class="transaction-list">
+        <p class="empty-state">Belum ada transaksi.</p>
+      </div>
+    </section>
+
+    <footer class="dashboard-footer">
+      My Personal Expense · Kelola keuangan dengan lebih baik.
+    </footer>
+
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+
+</body>
+</html>
